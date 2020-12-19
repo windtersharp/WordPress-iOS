@@ -178,13 +178,7 @@ extension ContextManager {
     static var overrideInstance: CoreDataStack?
 
     @objc class func sharedInstance() -> CoreDataStack {
-        if let overrideInstance = overrideInstance {
-            return overrideInstance
-        }
-
-        return FeatureFlag.swiftCoreData.enabled ?
-            CoreDataManager.shared :
-            ContextManager.internalSharedInstance()
+        ContextManager.internalSharedInstance()
     }
 
     static var shared: CoreDataStack {

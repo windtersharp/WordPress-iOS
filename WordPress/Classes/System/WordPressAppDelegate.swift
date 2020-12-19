@@ -62,6 +62,8 @@ class WordPressAppDelegate: UIResponder, UIApplicationDelegate {
         return UIApplication.shared.delegate as? WordPressAppDelegate
     }
 
+    let coreDataManager = try! CoreDataManager()
+
     // MARK: - Application lifecycle
 
     func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
@@ -76,6 +78,7 @@ class WordPressAppDelegate: UIResponder, UIApplicationDelegate {
         let dataSource = EventLoggingDataProvider.fromDDFileLogger(WPLogger.shared().fileLogger)
         let eventLogging = EventLogging(dataSource: dataSource, delegate: crashLoggingProvider.loggingUploadDelegate)
         CrashLogging.start(withDataProvider: crashLoggingProvider, eventLogging: eventLogging)
+
 
         // Configure WPCom API overrides
         configureWordPressComApi()
